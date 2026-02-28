@@ -3,3 +3,7 @@
 ```bash
 sudo apt install libwebsocketpp-dev
 ```
+
+```zsh
+brew install websocketpp
+```

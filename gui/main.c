@@ -71,8 +71,8 @@ int main(void)
     //lv_demo_widgets();
    // lv_demo_widgets_start_slideshow();
     lv_indev_t * indev = lv_evdev_create(LV_INDEV_TYPE_POINTER, "/dev/input/event1");    
-#elif LV_USE_LIBINPUT
-    lv_indev_t * indev = lv_libinput_create(LV_INDEV_TYPE_POINTER, NULL);
+#elif LV_USE_SDL
+    /* SDL handles the pointer for us – nothing to do here. */
 #endif
     lv_100ask_xz_ai_main();
 
