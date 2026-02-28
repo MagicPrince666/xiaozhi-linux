@@ -13,23 +13,24 @@ set(COMMON_LIBRARIES
 )
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+# Define LVGL configuration macros early so they apply to the library build as well
 if (${CMAKE_SYSTEM_PROCESSOR} STREQUAL ${CMAKE_HOST_SYSTEM_PROCESSOR})
   # 直接编译
   message(STATUS "host compile")
   if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "aarch64")
     message(STATUS "arm64 host compile")
+    add_definitions(-DLV_USE_LINUX_FBDEV=0 -DLV_USE_LINUX_DRM=1 -DLV_USE_SDL=0 -DLV_USE_EVDEV=1 -DLV_USE_LIBINPUT=0 -D_GNU_SOURCE -DHAVE_UNISTD_H -DHAVE_FCNTL_H)
+    include(${CMAKE_CURRENT_LIST_DIR}/lvgl/tests/FindLibDRM.cmake)
+    include_directories(${Libdrm_INCLUDE_DIRS})
+    list(APPEND COMMON_LIBRARIES ${Libdrm_LIBRARIES})
   elseif (${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86_64")
     message(STATUS "x86_64 host compile")
+    add_definitions(-DLV_USE_LINUX_FBDEV=0 -DLV_USE_LINUX_DRM=0 -DLV_USE_SDL=1 -DLV_USE_EVDEV=0 -DLV_USE_LIBINPUT=0 -D_GNU_SOURCE -DHAVE_UNISTD_H -DHAVE_FCNTL_H)
   endif()
 else()
   # 交叉编译fb应用
   message(STATUS "cross compile")
 endif()
-# Define LVGL configuration macros early so they apply to the library build as well
-  add_definitions(-DLV_USE_LINUX_FBDEV=1 -DLV_USE_LINUX_DRM=0 -DLV_USE_SDL=0 -DLV_USE_EVDEV=1 -DLV_USE_LIBINPUT=0 -D_GNU_SOURCE -DHAVE_UNISTD_H -DHAVE_FCNTL_H)
-  include(${CMAKE_CURRENT_LIST_DIR}/lvgl/tests/FindLibDRM.cmake)
-  include_directories(${Libdrm_INCLUDE_DIRS})
-  list(APPEND COMMON_LIBRARIES ${Libdrm_LIBRARIES})
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 if (${MACHINES} MATCHES "arm64")
   message(STATUS "apple slicon compile")
@@ -57,8 +58,6 @@ add_subdirectory(lv_100ask_xz_ai)
 add_subdirectory(thirdparty/freetype)
 add_subdirectory(lvgl)
 target_include_directories(lvgl PUBLIC ${PROJECT_SOURCE_DIR})
-
-#add_subdirectory(lv_100ask_xz_ai)
 
 add_executable(main main.c mouse_cursor_icon.c)
 

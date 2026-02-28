@@ -1,1 +1,4 @@
+**/*.o
+**/*.o.d
+control_center/control_center
 gui/build/
