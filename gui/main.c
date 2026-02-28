@@ -66,11 +66,14 @@ int main(void)
     /* 初始化UI交互系统 */
     ui_system_init();
 
+#if LV_USE_EVDEV
     /*Create a Demo*/
     //lv_demo_widgets();
    // lv_demo_widgets_start_slideshow();
     lv_indev_t * indev = lv_evdev_create(LV_INDEV_TYPE_POINTER, "/dev/input/event1");    
-
+#elif LV_USE_LIBINPUT
+    lv_indev_t * indev = lv_libinput_create(LV_INDEV_TYPE_POINTER, NULL);
+#endif
     lv_100ask_xz_ai_main();
 
     /*Handle LVGL tasks*/

@@ -44,6 +44,11 @@ endif()
 # Include root and optional parent path of LV_CONF_PATH
 target_include_directories(lvgl SYSTEM PUBLIC ${LVGL_ROOT_DIR} ${LV_CONF_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
+# Find and link libpng if LV_USE_LIBPNG is enabled
+find_package(PNG QUIET)
+if(PNG_FOUND)
+    target_link_libraries(lvgl PRIVATE PNG::PNG)
+endif()
 
 if(NOT LV_CONF_BUILD_DISABLE_THORVG_INTERNAL)
     add_library(lvgl_thorvg ${THORVG_SOURCES})
