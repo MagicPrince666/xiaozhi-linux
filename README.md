@@ -23,7 +23,10 @@ Linux 小智运行演示视频：https://www.bilibili.com/video/BV17nXNYJE5P/?sh
 
 ![image-20250327113143486](docs/img/image-20250327113143486.png)
 
-
+添加子仓库
+```bash
+git submodule update --init --recursive # 同步子仓库
+```
 
 源码架构解析：
 
