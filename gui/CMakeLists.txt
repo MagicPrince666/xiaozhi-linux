@@ -9,7 +9,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 # Define LVGL configuration macros early so they apply to the library build as well
-  add_definitions(-DLV_USE_LINUX_FBDEV=0 -DLV_USE_LINUX_DRM=0 -DLV_USE_SDL=1 -DLV_USE_EVDEV=0 -DLV_USE_LIBINPUT=0 -D_GNU_SOURCE -DHAVE_UNISTD_H)
+  add_definitions(-DLV_USE_LINUX_FBDEV=1 -DLV_USE_LINUX_DRM=0 -DLV_USE_SDL=0 -DLV_USE_EVDEV=1 -DLV_USE_LIBINPUT=0 -D_GNU_SOURCE -DHAVE_UNISTD_H -DHAVE_FCNTL_H)
   include(${CMAKE_CURRENT_LIST_DIR}/lvgl/tests/FindLibDRM.cmake)
   include_directories(${Libdrm_INCLUDE_DIRS})
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
