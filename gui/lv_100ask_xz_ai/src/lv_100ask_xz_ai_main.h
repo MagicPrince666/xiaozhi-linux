@@ -39,7 +39,11 @@ extern "C" {
  */
 #define ASSETS_PATH  "A:/usr/share/xiaozhi/"
 
+#ifndef PROJECT_PATH
 #define PATH_PREFIX "/usr/share/xiaozhi/"
+#else
+#define PATH_PREFIX PROJECT_PATH"/xiaozhi/"
+#endif
 
 void lv_100ask_xz_ai_main(void);
 
