@@ -8,7 +8,7 @@
             "name": "xiaozhi linux debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/install/main",
+            "program": "${workspaceFolder}/install/bin/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
