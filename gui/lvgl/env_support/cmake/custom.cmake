@@ -90,7 +90,7 @@ if(NOT LV_CONF_SKIP)
     ${LV_CONF_PATH})
   else()
     list(APPEND LVGL_PUBLIC_HEADERS
-    "${CMAKE_SOURCE_DIR}/lv_conf.h")
+    "${CMAKE_SOURCE_DIR}/gui/lv_conf.h")
   endif()
 endif()
 
