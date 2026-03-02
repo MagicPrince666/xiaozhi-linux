@@ -22,5 +22,3 @@ SET(CMAKE_CXX_COMPILER ${TOOLCHAIN_DIR}arm-openwrt-linux-muslgnueabi-g++)
 
 # 库和头文件搜索路径
 set(CMAKE_PREFIX_PATH ${SYSROOT_DIR})
-SET(OPENSSL_CRYPTO_LIBRARY crypto)
-SET(OPENSSL_SSL_LIBRARY ssl)
