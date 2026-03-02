@@ -17,6 +17,7 @@ else()
   # 交叉编译fb应用
   message(STATUS "cross compile")
 endif()
+  add_subdirectory(sound_app)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 if (${MACHINES} MATCHES "arm64")
   message(STATUS "apple slicon compile")
@@ -30,4 +31,4 @@ endif()
 
 add_subdirectory(gui)
 add_subdirectory(control_center)
-add_subdirectory(sound_app)
+
