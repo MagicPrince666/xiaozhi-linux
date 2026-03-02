@@ -69,4 +69,4 @@ include_directories(${CMAKE_SOURCE_DIR}/lv_100ask_xz_ai ${SDL2_INCLUDE_DIRS} ${S
 target_link_libraries(main lv_100ask_xz_ai  lvgl lvgl::examples lvgl::demos lvgl::thorvg ${COMMON_LIBRARIES} freetype PNG::PNG)
 
 install(TARGETS main RUNTIME DESTINATION bin)
-  
+install(DIRECTORY xiaozhi DESTINATION share)
