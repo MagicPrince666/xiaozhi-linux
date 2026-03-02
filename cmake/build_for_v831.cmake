@@ -6,8 +6,8 @@ SET(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install)
 SET(CMAKE_SYSTEM_PROCESSOR "arm")
 
 # 工具链地址
-SET(TOOLCHAIN_DIR  "/home/pdk/Tina-t113-pro/prebuilt/gcc/linux-x86/arm/toolchain-sunxi-musl/toolchain/bin/")
-SET(SYSROOT_DIR "/home/pdk/Tina-t113-pro/out/t113-pro/staging_dir/target")
+SET(TOOLCHAIN_DIR  "/home/huangliquan/toolchain-sunxi-musl/toolchain/bin/")
+SET(SYSROOT_DIR "${TOOLCHAIN_DIR}../")
 
 # 设置 sysroot，防止编译器混用主机系统的头文件
 SET(CMAKE_SYSROOT ${SYSROOT_DIR})
@@ -22,5 +22,3 @@ SET(CMAKE_CXX_COMPILER ${TOOLCHAIN_DIR}arm-openwrt-linux-muslgnueabi-g++)
 
 # 库和头文件搜索路径
 set(CMAKE_PREFIX_PATH ${SYSROOT_DIR})
-SET(OPENSSL_CRYPTO_LIBRARY crypto)
-SET(OPENSSL_SSL_LIBRARY ssl)
