@@ -29,4 +29,5 @@ else()
 endif()
 
 add_subdirectory(gui)
-
+add_subdirectory(control_center)
+add_subdirectory(sound_app)

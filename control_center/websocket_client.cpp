@@ -384,6 +384,7 @@ static void *websocket_thread(void *arg) {
      } catch (websocketpp::exception const & e) {
          std::cout << "exit hear!" << e.what() << "exit here!!" << std::endl;
      }
+    return NULL;
 }
 
 /**
