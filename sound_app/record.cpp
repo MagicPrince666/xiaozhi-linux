@@ -105,7 +105,7 @@ int open_record(const char *device, unsigned int sample_rate, unsigned int chann
     snd_pcm_hw_params_get_channels(hw_params, &channels);
     snd_pcm_hw_params_get_format(hw_params, &format);
 
-    printf("frames = %d ************\n", frames);
+    printf("frames = %ld ************\n", frames);
     
     // Set output parameters
     if (actual_sample_rate) *actual_sample_rate = sample_rate;
