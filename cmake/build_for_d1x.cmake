@@ -17,7 +17,14 @@ message(STATUS "Using cross compiler sysroot: ${SYSROOT_DIR}")
 
 # 设置 sysroot，防止编译器混用主机系统的头文件
 SET(CMAKE_SYSROOT ${SYSROOT_DIR})
-SET(CMAKE_FIND_ROOT_PATH ${SYSROOT_DIR})
+
+# The cross compiler's built‑in sysroot often only contains the bare
+# runtime.  Platform headers (alsa, etc.) reside in the build system's
+# staging tree, so we append that location to the search path.  Doing
+# this here keeps the policy consistent across all subprojects.
+set(STAGING_DIR "/home/prince/tina/out/d1s-mq/staging_dir/target/usr")
+list(APPEND CMAKE_FIND_ROOT_PATH ${SYSROOT_DIR} ${STAGING_DIR})
+
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
