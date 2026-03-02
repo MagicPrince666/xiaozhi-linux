@@ -24,6 +24,7 @@ SET(CMAKE_SYSROOT ${SYSROOT_DIR})
 # this here keeps the policy consistent across all subprojects.
 set(STAGING_DIR "/home/prince/tina/out/d1s-mq/staging_dir/target/usr")
 list(APPEND CMAKE_FIND_ROOT_PATH ${SYSROOT_DIR} ${STAGING_DIR})
+include_directories(${STAGING_DIR}/include/libpng16)
 
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
