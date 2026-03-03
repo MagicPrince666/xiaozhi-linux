@@ -37,12 +37,14 @@ extern "C" {
  *  示例(Windows)： 假设 LETTER 设置为 'D'，之后路径可 "D:/100ask/"
  *  示例(Linux)：   直接设置 LETTER 设置为 'A'，之后路径可为 "A:/mnt/"
  */
-#define ASSETS_PATH  "A:/usr/share/xiaozhi/"
+
 
 #ifndef PROJECT_PATH
 #define PATH_PREFIX "/usr/share/xiaozhi/"
+#define ASSETS_PATH  "A:/usr/share/xiaozhi/"
 #else
 #define PATH_PREFIX PROJECT_PATH"/xiaozhi/"
+#define ASSETS_PATH  "A:"PROJECT_PATH"/xiaozhi/"
 #endif
 
 void lv_100ask_xz_ai_main(void);
