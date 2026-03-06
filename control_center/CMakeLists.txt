@@ -16,6 +16,10 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+add_definitions(-DPROJECT_PATH="${PROJECT_SOURCE_DIR}")
+endif()
+
 # Find and link Boost (system), OpenSSL, CURL and Threads
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(OpenSSL REQUIRED)

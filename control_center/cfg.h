@@ -6,7 +6,10 @@
 #define UI_PORT_UP    5678      /* GUI向control_center的这个端口上传UI信息 */
 #define UI_PORT_DOWN  5679      /* control_center向GUI的这个端口下发UI信息 */
 
-
+#ifndef PROJECT_PATH
 #define CFG_FILE "/etc/xiaozhi.cfg"
+#else
+#define CFG_FILE PROJECT_PATH "/xiaozhi.cfg"
+#endif
 
 #endif
