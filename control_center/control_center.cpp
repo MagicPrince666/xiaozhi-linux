@@ -417,6 +417,7 @@ int main(int argc, char **argv)
 
     // 获取无线网卡的 MAC 地址
     std::string mac = get_wireless_mac_address();
+    // mac = "00:0c:29:bd:43:05"; // 用于测试, 可以注释掉以获取真实MAC地址
     if (mac.empty()) {
         std::cerr << "Failed to get wireless MAC address" << std::endl;
         mac = "00:00:00:00:00:00"; // 默认值，可以根据需要修改
