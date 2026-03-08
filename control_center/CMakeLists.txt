@@ -10,6 +10,7 @@ set(SOURCES
   ipc_udp.cpp
   http.cpp
   uuid.cpp
+  syspower.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

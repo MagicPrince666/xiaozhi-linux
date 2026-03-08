@@ -36,6 +36,7 @@
 #include <random>
 #include <sstream>
 #include <iomanip>
+#include <memory>
 
 // Include nlohmann/json library
 #include "json.hpp"
@@ -43,6 +44,7 @@
 #include "http.h"
 #include "ipc_udp.h"
 #include "uuid.h"
+#include "syspower.h"
 
 #include "cfg.h"
 
@@ -210,16 +212,41 @@ static void process_hello_json(const char *buffer, size_t size)
         std::cout << "Error sending message: " << e << " (" << e.message() << ")" << std::endl;
     }            
 
-    std::string state = R"(
-        {"session_id":"","type":"iot","update":true,"states":[{"name":"Speaker","state":{"volume":80}},{"name":"Backlight","state":{"brightness":75}},{"name":"Battery","state":{"level":0,"charging":false}}]}
-    )";
+    std::unique_ptr<SysPower> power(new SysPower("smb1360-battery"));
+    json state;
+    state["session_id"] = "";
+    state["type"] = "iot";
+    state["update"] = true;
+
+    json states = json::array();
+
+    // Speaker state
+    json speaker_state;
+    speaker_state["name"] = "Speaker";
+    speaker_state["state"] = {{"volume", 80}};
+    states.push_back(speaker_state);
+
+    // Backlight state
+    json backlight_state;
+    backlight_state["name"] = "Backlight";
+    backlight_state["state"] = {{"brightness", 75}};
+    states.push_back(backlight_state);
+
+    // Battery state (电量修改为60)
+    json battery_state;
+    battery_state["name"] = "Battery";
+    battery_state["state"] = {{"level", power->GetCapacity()}, {"charging", power->IsCharging()}};
+    states.push_back(battery_state);
+
+    state["states"] = states;
     
     g_audio_upload_enable = 1;
 
     try {
-        //c->send(hdl, state, websocketpp::frame::opcode::text);
-        websocket_send_text(state.data(), state.size());
-        std::cout << "Send: " << state << std::endl;    
+        std::string state_str = state.dump();
+        //c->send(hdl, state_str, websocketpp::frame::opcode::text);
+        websocket_send_text(state_str.data(), state_str.size());
+        std::cout << "Send: " << state_str << std::endl;    
     } catch (const websocketpp::lib::error_code& e) {
         std::cout << "Error sending message: " << e << " (" << e.message() << ")" << std::endl;
     }
@@ -417,7 +444,7 @@ int main(int argc, char **argv)
 
     // 获取无线网卡的 MAC 地址
     std::string mac = get_wireless_mac_address();
-    // mac = "00:0c:29:bd:43:05"; // 用于测试, 可以注释掉以获取真实MAC地址
+    mac = "00:0c:29:bd:43:05"; // 用于测试, 可以注释掉以获取真实MAC地址
     if (mac.empty()) {
         std::cerr << "Failed to get wireless MAC address" << std::endl;
         mac = "00:00:00:00:00:00"; // 默认值，可以根据需要修改
