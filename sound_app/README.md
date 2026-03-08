@@ -3,3 +3,9 @@
 ```bash
 sudo apt install libopus-dev libspeexdsp-dev
 ```
+
+配置声卡
+
+```bash
+alsamixer
+```
