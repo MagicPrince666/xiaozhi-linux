@@ -17,6 +17,7 @@
 #include <atomic>
 #include <unordered_map>
 #include <thread>
+#include <memory>
 
 typedef struct ProcInfo {
     pid_t pid;                    // 记录pid
