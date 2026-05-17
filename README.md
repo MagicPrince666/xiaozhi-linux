@@ -56,7 +56,10 @@ git submodule update --init --recursive # 同步子仓库
 
 此仓库目前只是保留 Linux AI小智部分源码，不含平台相关，欢迎大家 提交 issue PR 来帮助改进 Linux小智。
 
-
+## 安装依赖
+```bash
+sudo apt install libasound2-dev libdrm-dev libcurl4-openssl-dev libpng-dev
+```
 
 ## 交流学习
 

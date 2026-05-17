@@ -1,0 +1,29 @@
+[
+    {
+        "proc": "gui/main",
+        "max_memery": 2048,
+        "max_cpu": 50,
+        "max_restart": 5,
+        "name": "main",
+        "arg": "",
+        "enable": true
+    },
+    {
+        "proc": "control_center/control_center",
+        "max_memery": 2048,
+        "max_cpu": 50,
+        "max_restart": 5,
+        "name": "control_center",
+        "arg": "",
+        "enable": true
+    },
+    {
+        "proc": "sound_app/sound_app",
+        "max_memery": 2048,
+        "max_cpu": 50,
+        "max_restart": 5,
+        "name": "sound_app",
+        "arg": "",
+        "enable": true
+    }
+]
